@@ -48,22 +48,22 @@
 
 ## Run
 
-####TAGS
+#### TAGS
 - `docker run redis:4.0` -> redis:4.0 is called a "tag". If we don't specify a tag, docker will default to "latest" tag.
 - docker hub has all the tags associated with all the images.
 
-####STDIN
+#### STDIN
 - By default, docker runs in an non-interactive mode. To enter interactive, use: `docker run -i kodekloud/simple-prompt-docker`.
 - `docker run -it kodekloud/simple-prompt-docker` -> enter interactive mode and attach to pseudo terminal.
 
-####PORT-FORWARDING
+#### PORT-FORWARDING
 - `docker run -p 80:5000 kodekloud/simple-webapp` -> -p allows to map external port 80 (docker host) to internal port 5000 (docker container) for "simple-webapp" container app.
 
-####INSPECT
+#### INSPECT
 - To presist data, we need to map a directory outside the docker container on a docker host to a directory inside a container. `docker run -v /opt/datadir:/var/lib/mysql mysql`
 - docker inspect blissful_hopper -> returns a jason file with more details about blissful_hopper container (used when required to find details about the container).
 
-####LOGS
+#### LOGS
 - `docker logs blissful_hopper` -> displays stout logs written for the container blissful_hopper.
 
 
@@ -98,11 +98,13 @@
 - To modify ENTRYPOINT at runtime, use: `docker run --entrypoint sleep1 ubuntu-sleeper 10`
 
 ## Networking
-        - Default - default networks when first *installed*
-        - Bridge - private (internal) 172.17 range - used by containers when they are first created
+- Types:    
+    - **Default** - default networks when first *installed*
+    - **Bridge** - private (internal) 172.17 range 
+                 - Used by containers when they are first created
                  - We use port-forwarding to give access to containers from external network
-        - None   - Containers are not associated with any networks (internal/external)
-        - Host   - Containters are associated with host network. This means that all exposed ports are immediately accessible externally.
+    - **None**   - Containers are not associated with any networks (internal/external)
+    - **Host**   - Containters are associated with host network. This means that all exposed ports are immediately accessible externally.
 - **User-Defined**
         - `docker network create --driver bridge --subnet 182.18.0.0/16` custom-isolated-network
         - docker network ls
